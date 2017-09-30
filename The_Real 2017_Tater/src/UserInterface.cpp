@@ -23,7 +23,7 @@ UserInterface::~UserInterface()
 {
 }
 void UserInterface::Init(){
-	m_paradeDrive = DriverStation::GetInstance()->GetDigitalIn(2);
+	//m_paradeDrive = DriverStation::GetInstance()->GetDigitalIn(2);
 	if (m_paradeDrive) printf("Parade Drive it is!!!\n");
 }
 

@@ -2,6 +2,9 @@
 #include "Shooter.h"
 #include "RobotMap.h"
 #include "UserInterface.h"
+#include <iostream>
+using namespace frc;
+using namespace std;
 //#include "TrapezoidalMove.h"
 
 /**
@@ -14,7 +17,7 @@ class RobotDemo : public IterativeRobot
 	RobotDrive myRobot; 					// robot drive system
 	//Joystick lStick, rStick, pickStick; 	// only joystick
 	Solenoid forkDown, forkUp, arcReactor;
-	Compressor pump;
+
 	Shooter shoot;
 	UserInterface ui;
 	struct TaterUserInput tui;
@@ -33,7 +36,7 @@ public:
 		forkDown(1, FORK_DN_SOL),
 		forkUp(1, FORK_UP_SOL),
 		arcReactor (1, ARC_RCTR_SOL),
-	    pump(1, PRESS_SW_DIO, 1, COMPRESSOR_RLY),
+
 	    shoot(),
 	    ui(),
 	    tui(),  // default to all zeros.
@@ -45,7 +48,7 @@ public:
 	  
 	{
 		myRobot.SetExpiration(0.3);
-		this->SetPeriod(0.02); 	//Set update period to sync with robot control packets (20ms nominal)
+		//this->SetPeriod(0.02); 	//Set update period to sync with robot control packets (20ms nominal)
 	}							//When set to zero, periodic tasks are called based on when DS packets come in
 	
 /**
@@ -54,7 +57,7 @@ public:
  * Use this method for default Robot-wide initialization which will
  * be called when the robot is first powered on.  It will be called exactly 1 time.
  */
-void RobotDemo::RobotInit() {
+void RobotInit() {
 	printf("Robot Init");
 	ui.Init();
 	SmartDashboard::PutNumber("something", 0.13);
@@ -70,10 +73,9 @@ void RobotDemo::RobotInit() {
  * the robot enters disabled mode. 
  */
 
-void RobotDemo::TeleopInit() {
+void TeleopInit() {
 	//lCode.Start();
 	//rCode.Start();
-	pump.Start();//turn on compressor
 	printf("Teleop Init");
 	ui.Init();
 	shoot.Init();
@@ -85,7 +87,7 @@ void RobotDemo::TeleopInit() {
  * Use this method for code which will be called periodically at a regular
  * rate while the robot is in teleop mode.
  */
-void RobotDemo::TeleopPeriodic() {
+void TeleopPeriodic() {
 	static bool frontDrive = true;
 
 	//float voltage;
@@ -100,9 +102,8 @@ void RobotDemo::TeleopPeriodic() {
 	if (tui.revDrive) {
 		frontDrive = false;
 		arcReactor.Set(true);	//activate arc-reactor
-	}void RobotDemo::DisabledInit() {
-		printf("Disabled Init");
 	}
+
 
 	/**
 	 * Periodic code for disabled mode should go here.
@@ -142,14 +143,16 @@ void RobotDemo::TeleopPeriodic() {
 		forkUp.Set(false);
 	}
 }
-
+void DisabledInit() {
+	printf("Disabled Init");
+}
 /**
  * Initialization code for test mode should go here.
  * 
  * Use this method for initialization code which will be called each time
  * the robot enters test mode.
  */
-void RobotDemo::TestInit() {
+void TestInit() {
 	printf("Test Init");
 }
 
@@ -159,7 +162,7 @@ void RobotDemo::TestInit() {
  * Use this method for code which will be called periodically at a regular
  * rate while the robot is in test mode.
  */
-void RobotDemo::TestPeriodic() {
+void TestPeriodic() {
 	
 	printf("Test Periodic");
 }

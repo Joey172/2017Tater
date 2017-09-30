@@ -287,7 +287,7 @@ void Shooter::Run3(TaterUserInput *tui){
 void Shooter::Complete(void){
 	m_shotType = NO_SHOT;
 	//m_task.Suspend();
-	m_task.Suspend();
+	//m_task.Suspend();
 }
 ShotType Shooter::GetShotType(void){
 	return m_shotType;
