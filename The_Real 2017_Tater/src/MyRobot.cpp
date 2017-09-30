@@ -29,13 +29,13 @@ class RobotDemo : public IterativeRobot
 
 public:
 	RobotDemo(): 									// list initialization
-		myRobot(LEFT_MOTOR_PWM, RIGHT_MOTOR_PWM),	// these must be initialized in the same order
+		myRobot(leftVroomVroom, rightVroomVroom),	// these must be initialized in the same order
 		//lStick(LTANK_JOY_USB),						// as they are declared above.
 		//rStick(RTANK_JOY_USB),
 		//pickStick(SHOOTER_JOY_USB),
-		forkDown(1, FORK_DN_SOL),
-		forkUp(1, FORK_UP_SOL),
-		arcReactor (1, ARC_RCTR_SOL),
+		forkDown(1, theHornsOfElTorroFall),
+		forkUp(1, theHornsOfElTorroRise),
+		arcReactor (1, trebuechetsCanUseACounterWeightToLaunchANinetyKilogramProjectileOverThreeHundredMeters),
 
 	    shoot(),
 	    ui(),

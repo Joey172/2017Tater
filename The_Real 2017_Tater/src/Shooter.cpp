@@ -94,7 +94,7 @@ while(1){
 }
 
 Shooter::Shooter(): // Constructor
-	pow(1,PNUEM_SOL), // init list
+	pow(1,solonardoFourNewMatics), // init list
 	m_shotType(NO_SHOT),
 	m_state(0),
     m_recordButton(0),

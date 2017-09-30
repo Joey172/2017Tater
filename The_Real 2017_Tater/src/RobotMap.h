@@ -21,5 +21,15 @@ enum controlor {
 	moveyMover
 };
 
+enum mootors {
+	rightVroomVroom,
+	leftVroomVroom,
+};
+enum solonardos {
+	trebuechetsCanUseACounterWeightToLaunchANinetyKilogramProjectileOverThreeHundredMeters,
+	theHornsOfElTorroRise,
+	theHornsOfElTorroFall,
+	solonardoFourNewMatics,
+};
 
 #endif
