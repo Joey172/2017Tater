@@ -7,7 +7,6 @@
 #include "WPILib.h"
 #include "RobotMap.h"
 #include "UserInterface.h"
-#include <cstdio>
 
 enum ShotType
 {
