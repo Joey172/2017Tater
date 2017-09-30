@@ -22,7 +22,6 @@ enum ShotType
  */
 class Shooter {
 	Solenoid pow;
-	Task m_task; 
 	ShotType m_shotType;
 	int m_state;
 	int m_recordButton;

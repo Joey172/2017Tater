@@ -69,86 +69,7 @@ void RobotDemo::RobotInit() {
  * Use this method for initialization code which will be called each time
  * the robot enters disabled mode. 
  */
-void RobotDemo::DisabledInit() {
-	printf("Disabled Init");
-}
 
-/**
- * Periodic code for disabled mode should go here.
- * 
- * Use this method for code which will be called periodically at a regular
- * rate while the robot is in disabled mode.
- */
-void RobotDemo::DisabledPeriodic() {
-	//static int count;
-	//printf("Disabled Periodic %i\n", count++);
-}
-
-/**
- * Initialization code for autonomous mode should go here.
- * 
- * Use this method for initialization code which will be called each time
- * the robot enters autonomous mode.
- */
-void RobotDemo::AutonomousInit() {
-	m_autoFirst = true;
-	myRobot.TankDrive((float)0, 0.0, true);//make sure the robot is stopped
-	pump.Start();//turn on compressor
-	printf("Autonomous Init");
-}
-
-/**
- * Periodic code for autonomous mode should go here.
- *
- * Use this method for code which will be called periodically at a regular
- * rate while the robot is in autonomous mode.
- * 
- */
-void RobotDemo::AutonomousPeriodic() {
-	//printf("Running \n");
-	//forkUp.Set(true);						//keep forks up
-	//myRobot.SetSafetyEnabled(false);
-	//Wait(1.0);
-	//myRobot.TankDrive(-0.85, -0.85, false);
-	//Wait(1.5);
-	//myRobot.TankDrive(0.0, 0.0, true);
-	//shoot.HighShot();
-	//printf("Finished \n");
-	//Wait(10);
-	//forkUp.Set(false);
-	
-	//potential two ball auto
-	if (m_autoFirst){
-		forkUp.Set(true); //hold forks up
-		myRobot.SetSafetyEnabled(false);
-		myRobot.TankDrive(-0.85, -0.85, false);	//drive forward for first shot
-		Wait(0.7);
-		myRobot.TankDrive(0.0, 0.0, true);	//stop
-		shoot.HighShot();	//shoot
-		forkUp.Set(false);	//release forks
-		Wait(1.0);
-		forkDown.Set(true);	//lower forks
-		myRobot.TankDrive(0.85, 0.85, false);	//drive back for next ball
-		Wait(0.7);
-		myRobot.TankDrive(0.0, 0.0, true);	//stop
-		Wait(1.0);
-		forkDown.Set(false);	//release forks
-		forkUp.Set(true);	//raise forks
-		Wait(1.0);
-		myRobot.TankDrive(-0.85, -0.85, false);	//drive forward for second shot
-		Wait(0.7);
-		myRobot.TankDrive(0.0, 0.0, true);	//stop
-		shoot.HighShot();	//shoot
-		}
-	m_autoFirst = false;
-}
-
-/**
- * Initialization code for teleop mode should go here.
- * 
- * Use this method for initialization code which will be called each time
- * the robot enters teleop mode.
- */
 void RobotDemo::TeleopInit() {
 	//lCode.Start();
 	//rCode.Start();
@@ -179,7 +100,17 @@ void RobotDemo::TeleopPeriodic() {
 	if (tui.revDrive) {
 		frontDrive = false;
 		arcReactor.Set(true);	//activate arc-reactor
+	}void RobotDemo::DisabledInit() {
+		printf("Disabled Init");
 	}
+
+	/**
+	 * Periodic code for disabled mode should go here.
+	 *
+	 * Use this method for code which will be called periodically at a regular
+	 * rate while the robot is in disabled mode.
+	 */
+
 	
 	if (frontDrive) {		//front is "forward"
 		if (tui.turbo) {

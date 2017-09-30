@@ -7,7 +7,6 @@
 
 #include "Shooter.h"
 #include "UserInterface.h"
-#include <taskLib.h>
 
 
 static void ShootBall(Shooter *s) 
