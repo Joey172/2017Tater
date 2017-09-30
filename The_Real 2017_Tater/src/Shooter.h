@@ -7,6 +7,7 @@
 #include "WPILib.h"
 #include "RobotMap.h"
 #include "UserInterface.h"
+#include <thread>
 
 enum ShotType
 {
@@ -26,7 +27,7 @@ class Shooter {
 	int m_state;
 	int m_recordButton;
 	int m_loopCount;
-
+	std::thread *m_thread;
 	
 public:
 	Shooter();

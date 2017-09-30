@@ -8,16 +8,17 @@
 #include "Shooter.h"
 #include "UserInterface.h"
 
+float trussLength, shot1,delay1,shot2;
 
 static void ShootBall(Shooter *s) 
 {
 while(1){
  		int startTime =GetFPGATime();
  		double length = 0.130;
- 		trussLength = SmartDashboard::GetNumber("something");
- 		shot1 = SmartDashboard::GetNumber("firstShot");
- 		delay1 = SmartDashboard::GetNumber("delay");
- 		shot2 = SmartDashboard::GetNumber("secondShot");
+ 		trussLength = SmartDashboard::GetNumber("something",0);
+ 		shot1 = SmartDashboard::GetNumber("firstShot",0);
+ 		delay1 = SmartDashboard::GetNumber("delay",0);
+ 		shot2 = SmartDashboard::GetNumber("secondShot",0);
  		if (!(0.0 < trussLength < 0.2))
  			trussLength = 0.130;
  		if (!(0.0 < shot1 < 0.2))
@@ -94,7 +95,6 @@ while(1){
 
 Shooter::Shooter(): // Constructor
 	pow(1,PNUEM_SOL), // init list
-	m_task ("Shooter", (FUNCPTR)ShootBall),
 	m_shotType(NO_SHOT),
 	m_state(0),
     m_recordButton(0),
@@ -113,7 +113,11 @@ void Shooter::SolenoidOn(bool value){
 }
 
 void Shooter::Init(void){
-	m_task.Start((int32_t)this);
+	//m_task.Start((int32_t)this);
+	if(m_thread != nullptr) {
+		delete m_thread;
+	}
+	m_thread = new std::thread(ShootBall, this);
 	
 }
 
@@ -263,19 +267,20 @@ void Shooter::Run3(TaterUserInput *tui){
 	if(m_shotType == NO_SHOT){
 		if (tui->highShot && !lastHighShot){
 			m_shotType = HIGH_SHOT;			
-			m_task.Resume();
+			//m_task.Resume();
+
 			}
 		else if (tui->trussShot && !lastTrussShot){ 
 			m_shotType = TRUSS_SHOT;
-			m_task.Resume();			
+			//m_task.Resume();
 			}
 		else if (tui->bumpShot && !lastBumpShot){
 			m_shotType = BUMP_SHOT;
-			m_task.Resume();
+			//m_task.Resume();
 			}
 		else if (tui->customShot && !lastCustomShot) {
 			m_shotType = CUSTOM_SHOT;
-			m_task.Resume();
+			//m_task.Resume();
 		}
 	}
 
