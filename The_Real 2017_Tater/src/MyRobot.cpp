@@ -25,7 +25,7 @@ class RobotDemo : public IterativeRobot
 	bool paradeDrive;
 	//Encoder lCode, rCode;
 	//TrapezoidalMoveProfile autoMove;
-
+	frc::Compressor m_compressor;
 
 public:
 	RobotDemo(): 									// list initialization
@@ -33,9 +33,9 @@ public:
 		//lStick(LTANK_JOY_USB),						// as they are declared above.
 		//rStick(RTANK_JOY_USB),
 		//pickStick(SHOOTER_JOY_USB),
-		forkDown(1, theHornsOfElTorroFall),
-		forkUp(1, theHornsOfElTorroRise),
-		arcReactor (1, trebuechetsCanUseACounterWeightToLaunchANinetyKilogramProjectileOverThreeHundredMeters),
+		forkDown(4),
+		forkUp(theHornsOfElTorroRise),
+		arcReactor (7),
 
 	    shoot(),
 	    ui(),
@@ -79,6 +79,7 @@ void TeleopInit() {
 	printf("Teleop Init");
 	ui.Init();
 	shoot.Init();
+	//m_compressor.Start();
 }
 
 /**
@@ -92,7 +93,7 @@ void TeleopPeriodic() {
 
 	//float voltage;
 	ui.GetData(&tui); // update user interface structure "tater user interface"
-	shoot.Run3(&tui);// check for button pushes and manange shots
+	shoot.Run(&tui);// check for button pushes and manange shots
 
 	//choose front/back
 	if (tui.frontDrive) {
@@ -131,20 +132,23 @@ void TeleopPeriodic() {
 	}
 	if (tui.forkDown){
 			forkDown.Set(true);
+			forkUp.Set(false);
 		}
 	else {
 		forkDown.Set(false);
-	}
-
-	if (tui.forkUp){
 		forkUp.Set(true);
 	}
-	else {
-		forkUp.Set(false);
-	}
+
+//	if (tui.forkUp){
+//		forkUp.Set(true);
+//	}
+//	else {
+//		//forkUp.Set(false);
+//	}
 }
 void DisabledInit() {
 	printf("Disabled Init");
+	//m_compressor.Stop();
 }
 /**
  * Initialization code for test mode should go here.

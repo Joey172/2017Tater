@@ -1,6 +1,6 @@
 #ifndef ROBOTMAP_H_
 #define ROBOTMAP_H_
-
+//#include <C:\Windows\System32>
 /*
  * RobotMap.h
  *
@@ -13,23 +13,16 @@
  */
 // USB CHANNELS a
 
-enum controlor {
-	kerthunk,
-	bigKerthunk,
-	pickyThingyUp,
-	pickyThingyDown,
-	moveyMover
-};
 
 enum mootors {
-	rightVroomVroom,
 	leftVroomVroom,
+	rightVroomVroom,
+
 };
 enum solonardos {
-	trebuechetsCanUseACounterWeightToLaunchANinetyKilogramProjectileOverThreeHundredMeters,
-	theHornsOfElTorroRise,
 	theHornsOfElTorroFall,
-	solonardoFourNewMatics,
+	theHornsOfElTorroRise,
+	trebuechetsCanUseACounterWeightToLaunchANinetyKilogramProjectileOverThreeHundredMeters,
 };
 
 #endif

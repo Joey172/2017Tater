@@ -94,7 +94,7 @@ while(1){
 }
 
 Shooter::Shooter(): // Constructor
-	pow(1,solonardoFourNewMatics), // init list
+	pow(trebuechetsCanUseACounterWeightToLaunchANinetyKilogramProjectileOverThreeHundredMeters), // init list
 	m_shotType(NO_SHOT),
 	m_state(0),
     m_recordButton(0),
@@ -114,10 +114,11 @@ void Shooter::SolenoidOn(bool value){
 
 void Shooter::Init(void){
 	//m_task.Start((int32_t)this);
-	if(m_thread != nullptr) {
-		delete m_thread;
+	static bool firstTime = true;
+	if(firstTime) {
+		m_thread = new std::thread(ShootBall, this);
 	}
-	m_thread = new std::thread(ShootBall, this);
+	firstTime = false;
 	
 }
 

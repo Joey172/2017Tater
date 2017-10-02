@@ -38,16 +38,35 @@ void  UserInterface::GetData(TaterUserInput *tui){
 		tui->frontDrive = joy1.GetRawButton(3);
 		tui->revDrive 	= joy1.GetRawButton(2);
 		tui->turbo		= joy1.GetRawButton(11) | joy1.GetRawButton(12);
-		tui->leftVal	= joy1.GetY();
-		tui->rightVal	= joy1.GetRawAxis(4);
+
 		
-		tui->highShot 	= joy1.GetRawButton(7);
-		tui->trussShot 	= joy1.GetRawButton(5);
-		tui->bumpShot 	= joy1.GetRawButton(9);
+
+		//static bool usePOV = false;
+
+//		for(int i = 0; i < 9; i++) {
+//			if(joy1.GetPOV(i)) {
+//				usePOV = !usePOV;
+//				break;
+//			}
+//		}
+//
+//		if(!usePOV) {
+//			tui->leftVal	= joy1.GetY();
+//			tui->rightVal	= joy1.GetRawAxis(3);
+//		} else {
+//			tui->leftVal	= joy1.GetPOV(1);
+//			tui->rightVal	= joy1.GetRawAxis(3);
+//		}
+		tui->leftVal	= joy1.GetY();
+		tui->rightVal	= joy1.GetRawAxis(3);
+
+		tui->highShot 	= joy1.GetRawButton(5);
+		tui->trussShot 	= 0;//joy1.GetRawButton(0);
+		tui->bumpShot 	= joy1.GetRawButton(7);
 		tui->customShot = joy1.GetRawButton(10);
 	
 		tui->forkDown	= joy1.GetRawButton(8);	
-		tui->forkUp		= joy1.GetRawButton(6);	  
+		tui->forkUp		= joy1.GetRawButton(6);
 	 }
 	 else{
 
